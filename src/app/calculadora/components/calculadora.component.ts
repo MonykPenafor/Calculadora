@@ -8,10 +8,10 @@ import { CalculadoraService } from '../services';
 })
 export class CalculadoraComponent implements OnInit {
 
-  private numero1: string;
-  private numero2: string;
-  private resultado: number;
-  private operacao: string;
+  private numero1: string = '0';
+  private numero2: string | null = null;
+  private resultado: number | null = null;
+  private operacao: string | null = null;
 
   constructor(private calculadoraService: CalculadoraService) { }
 
@@ -31,7 +31,7 @@ export class CalculadoraComponent implements OnInit {
     if (this.operacao === null) {
       this.numero1 = this.concatenarNumero(this.numero1, numero);
     } else {
-      this.numero2 = this.concatenarNumero(this.numero2, numero)
+      this.numero2 = this.concatenarNumero(this.numero2!, numero)
     }
   }
 
@@ -86,7 +86,7 @@ export class CalculadoraComponent implements OnInit {
     this.resultado = this.calculadoraService.calcular(
       parseFloat(this.numero1),
       parseFloat(this.numero2),
-      this.operacao);
+      this.operacao!);
   }
 
 
